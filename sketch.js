@@ -76,6 +76,10 @@ function draw() {
     score = score + Math.round(getFrameRate()/60);
     if(keyDown("space")) {
       trex.velocityY = -10;
+      playSound("jump.mp3");
+    }
+    if (count>0 && count%100 === 0){
+      playSound("checkPoint.mp3");
     }
     trex.velocityY = trex.velocityY + 0.8
     if (ground.x < 0){
@@ -87,7 +91,9 @@ function draw() {
     
     //End the game when trex is touching the obstacle
     if(obstaclesGroup.isTouching(trex)){
+      playSound("jump.mp3");
       gameState = END;
+      playSound("die.mp3");
     }
 
   }
